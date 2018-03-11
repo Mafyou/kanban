@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   dragndrop() {
     $('.task').on("dragstart", function (event) {
+      $(this).css("background-color", "black");
       var dt = event.originalEvent.dataTransfer;
       dt.setData('Text', $(this).attr('id'));
     });
@@ -35,8 +36,15 @@ export class AppComponent implements OnInit {
       event.preventDefault();
       if (event.type === 'drop') {
         var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
-        var de = $('#'+data).detach();
-        de.appendTo($(this));	
+        var taskState = $(this).closest('table').find('th').eq($(this).index())[0].innerHTML;
+        switch (taskState) {
+          case "En attente": $('#' + data).css("background-color", "gray");break;
+          case "En cours": $('#' + data).css("background-color", "orange");break;
+          case "Terminé": $('#' + data).css("background-color", "green");break;
+          case "Livré": $('#' + data).css("background-color", "black");break;
+        }
+        var de = $('#' + data).detach();
+        de.appendTo($(this));
       };
     });
   }
