@@ -1,0 +1,32 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1 class="title">
+        Welcome to {{title}} !
+      </h1>
+</div>
+<div>
+  <table id="kanban" class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>En attente</th>
+        <th>En cours</th>
+        <th>Terminé</th>
+        <th>Livré</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span>Mafyou</span></td>
+        <td id="startTask"><span class="task" draggable="true" id="task1">Task 1</span></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="addTask()">Add a task</button>
+  <button (click)="addPerson()">Add a person</button>
+  <br />
+  <i>You can edit the task name and the user name by double clicking on them.</i>
+</div>
