@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
       var dt = event.originalEvent.dataTransfer;
       dt.setData('Text', $(this).attr('id'));
     });
-    $('table td').on("dragenter dragover drop", function (event) {	
+    $('table td').not("td:first-child").on("dragenter dragover drop", function (event) {	
       event.preventDefault();
       if (event.type === 'drop') {
         var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
@@ -53,9 +53,17 @@ export class AppComponent implements OnInit {
     $('span').bind('dblclick',
     function(){
         $(this).attr('contentEditable',true);
+        var oldBg = $(this).css("background-color");
+        $(this).attr("oldBg", oldBg);
+        $(this).css("background-color", "white");
+        $(this).css("color", "black");
+        
     }).blur(
       function() {
           $(this).attr('contentEditable', false);
+          var oldBg = $(this).attr("oldBg");
+          $(this).css("background-color", oldBg);
+          $(this).css("color", "white");
       });;
   }
 
