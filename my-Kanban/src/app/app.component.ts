@@ -9,18 +9,18 @@ declare var $ :any;
   encapsulation: ViewEncapsulation.None // To apply style on the fly
 })
 export class AppComponent implements OnInit {
-  title = 'my First Kanban';
+  title = 'Premier Kanban';
   addTask(){
     var taskNumber = $("span.task").length;
     var newTask = taskNumber + 1;
-    $('#startTask').append("<span class='task' draggable='true' id='task"+ newTask + "'>Task " + newTask + "</span>").trigger('create');
+    $('#startTask').append("<span class='task' draggable='true' id='task"+ newTask + "'>Tâche " + newTask + "</span>").trigger('create');
     // Rebind
     this.dragndrop();
     this.editableSpan();
   };
   
   addPerson() {
-    $('#kanban tr:last').after('<tr><td><span>MyUser</span></td><td></td><td></td><td></td><td></td></tr>').trigger('create');;
+    $('#kanban tr:last').after('<tr><td><span>Utilisateur</span></td><td></td><td></td><td></td><td></td></tr>').trigger('create');;
     // Rebind
     this.dragndrop();
     this.editableSpan();
