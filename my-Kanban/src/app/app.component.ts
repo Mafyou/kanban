@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 declare var jquery:any;
 declare var $ :any;
 
@@ -9,18 +10,41 @@ declare var $ :any;
   encapsulation: ViewEncapsulation.None // To apply style on the fly
 })
 export class AppComponent implements OnInit {
-  title = 'Premier Kanban';
+  constructor(private translate: TranslateService) {
+    translate.addLangs(["en", "fr"]);
+    translate.setDefaultLang('fr');
+
+    let browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr/) ? browserLang : 'fr');
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
+  }
+
   addTask(){
     var taskNumber = $("span.task").length;
     var newTask = taskNumber + 1;
-    $('#startTask').append("<span class='task' draggable='true' id='task"+ newTask + "'>Tâche " + newTask + "</span>").trigger('create');
+    var currentLanguage = this.translate.currentLang;
+    if (currentLanguage === "en") {
+      $('#startTask').append("<span class='task' draggable='true' id='task"+ newTask + "'>Task " + newTask + "</span>").trigger('create');
+    }
+    else {
+      $('#startTask').append("<span class='task' draggable='true' id='task"+ newTask + "'>Tâche " + newTask + "</span>").trigger('create');
+    }
     // Rebind
     this.dragndrop();
     this.editableSpan();
   };
   
   addPerson() {
-    $('#kanban tr:last').after('<tr><td><span>Utilisateur</span></td><td></td><td></td><td></td><td></td></tr>').trigger('create');;
+    var currentLanguage = this.translate.currentLang;
+    if (currentLanguage === "en") {
+      $('#kanban tr:last').after('<tr><td><span>User</span></td><td></td><td></td><td></td><td></td></tr>').trigger('create');;
+    }
+    else {
+      $('#kanban tr:last').after('<tr><td><span>Utilisateur</span></td><td></td><td></td><td></td><td></td></tr>').trigger('create');;
+    }
     // Rebind
     this.dragndrop();
     this.editableSpan();
@@ -36,12 +60,12 @@ export class AppComponent implements OnInit {
       event.preventDefault();
       if (event.type === 'drop') {
         var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
-        var taskState = $(this).closest('table').find('th').eq($(this).index())[0].innerHTML;
+        var taskState = $(this).closest('table').find('th').eq($(this).index())[0].id;
         switch (taskState) {
-          case "En attente": $('#' + data).css("background-color", "gray");break;
-          case "En cours": $('#' + data).css("background-color", "orange");break;
-          case "Terminé": $('#' + data).css("background-color", "green");break;
-          case "Livré": $('#' + data).css("background-color", "black");break;
+          case "wait": $('#' + data).css("background-color", "gray");break;
+          case "loading": $('#' + data).css("background-color", "orange");break;
+          case "finished": $('#' + data).css("background-color", "green");break;
+          case "delivered": $('#' + data).css("background-color", "black");break;
         }
         var de = $('#' + data).detach();
         de.appendTo($(this));

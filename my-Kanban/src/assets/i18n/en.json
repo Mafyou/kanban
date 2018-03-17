@@ -1,0 +1,15 @@
+{
+    "kanban": {
+        "title": "Welcome to my first Kanban",
+        "firstTask": "Task 1",
+        "task": "Task",
+        "wait" : "Waiting",
+        "loading" : "Doing",
+        "finished" : "Finished",
+        "delivered" : "Delivered",
+        "addPerson": "Add person",
+        "addTask": "Add task",
+        "help": "You can edit task name or person to double clic on them",
+        "lang": "Choose your language here"
+    }
+}

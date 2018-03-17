@@ -1,0 +1,15 @@
+{
+    "kanban": {
+        "title" : "Bienvenue dans mon premier Kanban",
+        "firstTask" : "Tâche 1",
+        "task": "Tâche",
+        "wait" : "En attente",
+        "loading" : "En cours",
+        "finished" : "Terminée",
+        "delivered" : "Livrée",
+        "addPerson": "Ajouter une personne",
+        "addTask": "Ajouter une tâche",
+        "help": "Vous pouvez éditer le nom des tâches et les personnes assignées en double clickant dessus",
+        "lang": "Choix de la langue ici"
+    }
+}

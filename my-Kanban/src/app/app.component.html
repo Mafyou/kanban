@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
     <h1 class="title">
-        Bienvenue dans mon {{title}} !!!
+      {{ 'kanban.title' | translate }} !!!
       </h1>
 </div>
 <div>
@@ -9,24 +9,27 @@
     <thead class="thead-dark">
       <tr>
         <th>&nbsp;</th>
-        <th>En attente</th>
-        <th>En cours</th>
-        <th>Terminé</th>
-        <th>Livré</th>
+        <th id="wait">{{ 'kanban.wait' | translate}}</th>
+        <th id="loading">{{ 'kanban.loading' | translate}}</th>
+        <th id="finished">{{ 'kanban.finished' | translate}}</th>
+        <th id="delivered">{{ 'kanban.delivered' | translate}}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><span>Mafyou</span></td>
-        <td id="startTask"><span class="task" draggable="true" id="task1">Task 1</span></td>
+        <td id="startTask"><span class="task" draggable="true" id="task1">{{ 'kanban.firstTask' | translate}}</span></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <button class="btn" (click)="addTask()">Ajouter une tâche</button>
-  <button class="btn" (click)="addPerson()">Ajouter une personne</button>
+  <button class="btn" (click)="addTask()">{{ 'kanban.addTask' | translate }}</button>
+  <button class="btn" (click)="addPerson()">{{ 'kanban.addPerson' | translate }}</button>
   <br />
-  <i>Vous pouvez éditer le nom des tâches et les personnes assignées en double clickant dessus.</i>
+  <i>{{ 'kanban.help' | translate }}.</i><br />
+  <i>{{ 'kanban.lang' | translate }}:</i>
+  <a (click)="useLanguage('fr')" href="#">fr</a>
+  <a (click)="useLanguage('en')" href="#">en</a>
 </div>
